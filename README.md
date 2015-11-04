@@ -128,39 +128,40 @@ This includes the installation of updates, securing the system from a number of 
     sudo service apache2 restart
 
 ## iv. The following is a list of resources used to complete this project
-[Class Discussion](https://discussions.udacity.com/c/nd004-p5-linux-based-server-configuration)
-[Making oauth work](https://discussions.udacity.com/t/google-oauth2-ajax-call-not-working/31912)
-[Making oauth work p2](]https://discussions.udacity.com/t/google-sign-in-oauth-error/29733/2)
-[Making oauth work p3](https://discussions.udacity.com/t/google-sign-in-problems/28191)
-[Making oauth work p4...you get the point](https://discussions.udacity.com/t/oauth2credentials-object-is-not-json-serializable/18472/4)
-[Class Configuring Linux Web Servers](https://www.udacity.com/course/configuring-linux-web-servers--ud299)
-[Additional Resource for project](https://discussions.udacity.com/t/p5-how-i-got-through-it/15342/6)
-[Making that client secret file to be recognized](http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory)
-[Additional resource for project p2](https://discussions.udacity.com/t/project-5-resources/28343)
-[Additional resources for project p3](https://discussions.udacity.com/t/markedly-underwhelming-and-potentially-wrong-resource-list-for-p5/8587)
+- [Class Discussion](https://discussions.udacity.com/c/nd004-p5-linux-based-server-configuration)
+- [Making oauth work](https://discussions.udacity.com/t/google-oauth2-ajax-call-not-working/31912)
+- [Making oauth work p2](https://discussions.udacity.com/t/google-sign-in-oauth-error/29733/2)
+- [Making oauth work p3](https://discussions.udacity.com/t/google-sign-in-problems/28191)
+- [Making oauth work p4...you get the point](https://discussions.udacity.com/t/oauth2credentials-object-is-not-json-serializable/18472/4)
+- [Class Configuring Linux Web Servers](https://www.udacity.com/course/configuring-linux-web-servers--ud299)
+- [Additional Resource for project](https://discussions.udacity.com/t/p5-how-i-got-through-it/15342/6)
+- [Making that client secret file to be recognized](http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory)
+- [Additional resource for project p2](https://discussions.udacity.com/t/project-5-resources/28343)
+- [Additional resources for project p3](https://discussions.udacity.com/t/markedly-underwhelming-and-potentially-wrong-resource-list-for-p5/8587)
 
 ## Additional configurations made after first review
-Step 1: Disable root access, log in as grader, copy root key to grader and disable root entry without password
+- Step 1: Disable root access, log in as grader, copy root key to grader and disable root entry without password
 ```
 sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/authorized_keys
 sudo nano /etc/ssh/sshd_config
 sudo service ssh restart
+
 ```
 
-Step 2: Install automatic updates, using the gui configuration
+- Step 2: Install automatic updates, using the gui configuration
 ```
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-Step 3: Configure fail to ban
-install service `sudo apt-get install fail2ban'
+- Step 3: Configure fail to ban
+install service `sudo apt-get install fail2ban`
 follow guide [fail2ban for ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
 
-Step 4: Configure automated feedback on application availability status
+- Step 4: Configure automated feedback on application availability status
 Follow guide [Munin on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-munin-on-an-ubuntu-vps)
 
-Step 5: Fix the README.md
+- Step 5: Fix the README.md
 Using guide on [Github Markdown Basics](https://help.github.com/articles/markdown-basics/)
 
 
