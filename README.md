@@ -149,10 +149,10 @@ sudo service ssh restart
 ```
 
 - Step 2: Install automatic updates, using the gui configuration
-```
-sudo apt-get install unattended-upgrades
-sudo dpkg-reconfigure -plow unattended-upgrades
-```
+
+`sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades`
+
 
 - Step 3: Configure fail to ban
 install service `sudo apt-get install fail2ban`
