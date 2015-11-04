@@ -141,28 +141,30 @@ This includes the installation of updates, securing the system from a number of 
 
 ## Additional configurations made after first review
 - Step 1: Disable root access, log in as grader, copy root key to grader and disable root entry without password
-```
+  - ```
 sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/authorized_keys
 sudo nano /etc/ssh/sshd_config
 sudo service ssh restart
-
 ```
 
 - Step 2: Install automatic updates, using the gui configuration
 
-`sudo apt-get install unattended-upgrades
-sudo dpkg-reconfigure -plow unattended-upgrades`
-
+  - ```
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
+```
 
 - Step 3: Configure fail to ban
-install service `sudo apt-get install fail2ban`
-follow guide [fail2ban for ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
+install service 
+  - `sudo apt-get install fail2ban`
+  - follow guide [fail2ban for ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
 
 - Step 4: Configure automated feedback on application availability status
-Follow guide [Munin on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-munin-on-an-ubuntu-vps)
+  - Follow guide [Munin on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-munin-on-an-ubuntu-vps)
 
 - Step 5: Fix the README.md
-Using guide on [Github Markdown Basics](https://help.github.com/articles/markdown-basics/)
+  - Using guide on [Github Markdown Basics](https://help.github.com/articles/markdown-basics/)
+  - Using [live preview markdown](http://markdownlivepreview.com/)
 
 
 
