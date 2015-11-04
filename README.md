@@ -141,18 +141,20 @@ This includes the installation of updates, securing the system from a number of 
 
 ## Additional configurations made after first review
 - Step 1: Disable root access, log in as grader, copy root key to grader and disable root entry without password
-  - ```
-sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/authorized_keys
+  - 
+  ```
+  sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/authorized_keys
 sudo nano /etc/ssh/sshd_config
 sudo service ssh restart
 ```
 
 - Step 2: Install automatic updates, using the gui configuration
 
-  - ```
+  - 
+  `
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
+`
 
 - Step 3: Configure fail to ban
 install service 
