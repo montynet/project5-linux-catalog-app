@@ -1,12 +1,12 @@
-# project5-linux-catalog-app
+### project5-linux-catalog-app
 A Ubuntu Linux server on a virtual machine to hosting a Flask web application.
 This includes the installation of updates, securing the system from a number of attack vectors and installing/configuring web and database servers.
 
-i. The IP address of my public environment is 52.32.130.204 and port is 2200
+##i. The IP address of my public environment is 52.32.130.204 and port is 2200
 
-ii. The complete url of my application is http://ec2-52-32-130-204.us-west-2.compute.amazonaws.com/
+## ii. The complete url of my application is http://ec2-52-32-130-204.us-west-2.compute.amazonaws.com/
 
-iii. The following steps were taken to complete this project along with things done
+## iii. The following steps were taken to complete this project along with things done
 
 Step 1 Get development environment from https://www.udacity.com/account#!/development_environment
 Step 2 SSH to server as explained in guide
@@ -31,10 +31,12 @@ Step 7 Configure local time zone using
     choosing 'None of the above' and then 'UTC'
     b. set up ntp daemon using sudo apt-get install ntp
     c. Add these server pools in sudo nano /etc/ntp.conf
+    ```
     server 0.north-america.pool.ntp.org
     server 1.north-america.pool.ntp.org
     server 2.north-america.pool.ntp.org
     server 3.north-america.pool.ntp.org
+    ```
 Step 8 Install and configure apache to serve a Python mod_wsgi application
     a. sudo apt-get install apache2
     b. sudo apt-get install python-setuptools libapache2-mod-wsgi
@@ -56,6 +58,7 @@ Step 9 Set up git and clone project 3 application in desired directory and deplo
     source venv/bin/activate
     pip install Flask
     j. create virtual host config in sudo nano /etc/apache2/sites-available/catalog.conf
+    ```
       <VirtualHost *:80>
           ServerName 52.32.130.204
           ServerAdmin admin@52.32.130.204
@@ -74,16 +77,18 @@ Step 9 Set up git and clone project 3 application in desired directory and deplo
           LogLevel warn
           CustomLog ${APACHE_LOG_DIR}/access.log combined
       </VirtualHost>
+      ```
     k.enable host sudo a2ensite catalog
     l. create the wsgi file sudo nano /var/www/catalog/catalog.wsgi
+      ```
       #!/usr/bin/python
       import sys
       import logging
       logging.basicConfig(stream=sys.stderr)
       sys.path.insert(0,"/var/www/catalog/")
-
       from catalog import app as application
       application.secret_key = 'Add your secret key'
+      ```
     m. restart apache sudo service apache2 restart
     n. clone and make .git inaccessible
     cd /var/www/catalog
@@ -120,17 +125,38 @@ Step 9 Set up git and clone project 3 application in desired directory and deplo
     and go to app
     sudo service apache2 restart
 
-iv. The following is a list of resources used to complete this project
-https://discussions.udacity.com/c/nd004-p5-linux-based-server-configuration
-https://discussions.udacity.com/t/google-oauth2-ajax-call-not-working/31912
-https://discussions.udacity.com/t/google-sign-in-oauth-error/29733/2
-https://discussions.udacity.com/t/google-sign-in-problems/28191
-https://discussions.udacity.com/t/oauth2credentials-object-is-not-json-serializable/18472/4
-class Configuring Linux Web Servers
-https://discussions.udacity.com/t/p5-how-i-got-through-it/15342/6
-http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory
-https://discussions.udacity.com/t/project-5-resources/28343
-https://discussions.udacity.com/t/markedly-underwhelming-and-potentially-wrong-resource-list-for-p5/8587
+## iv. The following is a list of resources used to complete this project
+[Class Discussion](https://discussions.udacity.com/c/nd004-p5-linux-based-server-configuration)
+[Making oauth work](https://discussions.udacity.com/t/google-oauth2-ajax-call-not-working/31912)
+[Making oauth work p2](]https://discussions.udacity.com/t/google-sign-in-oauth-error/29733/2)
+[Making oauth work p3](https://discussions.udacity.com/t/google-sign-in-problems/28191)
+[Making oauth work p4...you get the point](https://discussions.udacity.com/t/oauth2credentials-object-is-not-json-serializable/18472/4)
+[Class Configuring Linux Web Servers](https://www.udacity.com/course/configuring-linux-web-servers--ud299)
+[Additional Resource for project](https://discussions.udacity.com/t/p5-how-i-got-through-it/15342/6)
+[Making that client secret file to be recognized](http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory)
+[Additional resource for project p2](https://discussions.udacity.com/t/project-5-resources/28343)
+[Additional resources for project p3](https://discussions.udacity.com/t/markedly-underwhelming-and-potentially-wrong-resource-list-for-p5/8587)
+
+## Additional configurations made after first review
+Step 1: Disable root access, log in as grader, copy root key to grader and disable root entry without password
+```
+sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/authorized_keys
+sudo nano /etc/ssh/sshd_config
+sudo service ssh restart
+```
+
+Step 2: Install automatic updates, using the gui configuration
+```
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
+```
+
+Step 3: Configure fail to ban
+install service `sudo apt-get install fail2ban'
+follow guide [fail2ban for ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
+
+Step 4: Configure automated feedback on application availability status
+Follow guide [Munin on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-munin-on-an-ubuntu-vps)
 
 
 
